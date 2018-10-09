@@ -30,6 +30,7 @@ alias now="date +%Y-%m-%d.%H:%M:%S"
 alias tos="/opt/thinkorswim/thinkorswim"
 alias SS="sudo systemctl"
 alias gac="git add . && git commit -m"
+alias gpam="git push origin master"
 alias rewal="wal -i '~/Pictures/Wallpapers/bttf.jpg' --saturate 0.75 -s -a 95"
 alias ls='ls -hN --color=auto --group-directories-first'
 alias ccat="highlight --out-format=ansi"
@@ -42,7 +43,7 @@ alias ccat="highlight --out-format=ansi"
 #
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh
-POWERLEVEL9K_MODE='awesome-fontconfig' 
+POWERLEVEL9K_MODE='awesome-fontconfig'
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_VCS_GIT_ICON=''
 POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
@@ -66,8 +67,8 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
- 
-# Helps to hide username at console prompt? 
+
+# Helps to hide username at console prompt?
 export DEFAULT_USER="$USER"
 
 # Uncomment the following line to enable command auto-correction.
