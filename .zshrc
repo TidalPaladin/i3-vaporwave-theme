@@ -31,7 +31,7 @@ alias tos="/opt/thinkorswim/thinkorswim"
 alias SS="sudo systemctl"
 alias gac="git add . && git commit -m"
 alias gpom="git push origin master"
-alias rewal="wal -i '~/Pictures/Wallpapers/bttf.jpg' --saturate 0.75 -s -a 95"
+alias rewal="wal -i \"$HOME/Pictures/Wallpapers/bttf.jpg\" --saturate 0.75 -s -a 95"
 alias ls='ls -hN --color=auto --group-directories-first'
 alias ccat="highlight --out-format=ansi"
 

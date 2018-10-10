@@ -44,7 +44,7 @@ module-margin-left = 0
 ;modules-center = mpd
 ;modules-left = cpu memory filesystem
 
-modules-right = wlan i3 menu volume 
+modules-right = wlan i3 menu volume
 modules-center = date
 modules-left = cpu cputemp memory gpu gputemp filesystem
 
@@ -65,7 +65,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 tray-position = right
-tray-maxsize=32
+tray-maxsize=24
 
 [module/xwindow]
 type = internal/xwindow
@@ -119,7 +119,7 @@ type = internal/mpd
 host = gui
 port = 4200
 
-;format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next> 
+;format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next>
 format-online = <label-song>
 format-offline = <label-offline>
 
@@ -229,14 +229,14 @@ format-disconnected-padding = 1
 format-connected-underline = ${colors.white}
 format-disconnected-underline = ${colors.gray}
 
-label-connected =  
+label-connected = 
 label-disconnected = 
 label-disconnected-foreground = ${colors.gray}
 
 
 [module/date]
 type = internal/date
-date-alt = %A   %H:%M 
+date-alt = %A   %H:%M
 date = %b/%d/%y   %H:%M
 interval = 5
 
@@ -313,7 +313,7 @@ type = internal/temperature
 ; thermal-zone = 0
 warn-temperature = 65
 
-format = <label> 
+format = <label>
 format-warn = <label-warn>
 
 label = TEMP %temperature%
@@ -379,7 +379,7 @@ exec = nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits
 ;tail = true
 interval = 10
 
-label = "GPU_TEMP %output%°C"
+label = "GPU_TEMP %output:0:2%°C"
 
 [module/gpu]
 type = custom/script
@@ -392,6 +392,6 @@ exec = nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits
 ;tail = true
 interval = 10
 
-label = "GPU %output%%"
+label = "GPU %output:0:3%%"
 
 ; vim:ft=dosini
