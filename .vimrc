@@ -90,7 +90,7 @@ let mapleader =" "
 	autocmd VimLeave *.tex !texclear %
 
 " Disables automatic commenting on newline:
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+"	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " C-T for new tab
 	nnoremap <C-t> :tabnew<cr>
@@ -104,6 +104,8 @@ let mapleader =" "
 	inoremap jw <Esc>
 	inoremap wj <Esc>
 
+" Autoindent
+    set autoindent
  "____        _                  _
 "/ ___| _ __ (_)_ __  _ __   ___| |_ ___
 "\___ \| '_ \| | '_ \| '_ \ / _ \ __/ __|
@@ -231,7 +233,6 @@ map <enter><enter> yi[:e <c-r>"<cr>
     syntax on
     set tabstop=4
     set shiftwidth=4
-    set expandtab
     let g:onedark_termcolors=256
     colorscheme onedark
     set background=dark
