@@ -27,7 +27,6 @@ ZSH=/usr/share/oh-my-zsh/
 alias utd-vpn='sudo openconnect vpn.utdallas.edu'
 alias pia="bash ~/.pia.sh"
 alias now="date +%Y-%m-%d.%H:%M:%S"
-alias tos="/opt/thinkorswim/thinkorswim"
 alias SS="sudo systemctl"
 alias gac="git add . && git commit -m"
 alias gpom="git push origin master"
