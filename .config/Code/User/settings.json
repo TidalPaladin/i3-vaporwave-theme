@@ -8,9 +8,9 @@
     "workbench.startupEditor": "newUntitledFile",
     "editor.lineNumbers": "relative",
     "workbench.colorCustomizations": {
-        "statusBar.background": "#5f0000",
-        "statusBar.noFolderBackground": "#5f0000",
-        "statusBar.debuggingBackground": "#5f0000",
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f",
         "[One Dark Pro Vivid]": {
             "panel.background": "#000000",
             "sideBar.background": "#000000",
@@ -105,5 +105,6 @@
     "editor.hover.delay": 100,
     "gitlens.codeLens.enabled": false,
     "zenMode.hideStatusBar": false,
-    "zenMode.hideActivityBar": false
+    "zenMode.hideActivityBar": false,
+    "explorer.confirmDelete": false
 }

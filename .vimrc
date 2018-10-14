@@ -55,7 +55,7 @@ let mapleader =" "
 	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 
 " Readmes autowrap text:
-	autocmd BufRead,BufNewFile *.md,*.tex set tw=79
+	autocmd BufRead,BufNewFile *.md,*.tex,*.txt set tw=79
 
 " Get line, word and character counts with F3:
 	map <F3> :!wc <C-R>%<CR>
