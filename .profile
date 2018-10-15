@@ -29,4 +29,5 @@ source ~/.cache/wal/colors-tty.sh
 
 # Run script to remap caps lock
 xmodmap "$HOME/.scripts/.xmodmap-caps"
+unclutter -idle 2 -root &>/dev/null &
 

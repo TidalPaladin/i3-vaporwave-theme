@@ -11,7 +11,7 @@ bindkey -v # VIM in console
 set laststatus=2
 export KEYTIMEOUT=1
 export TERM="xterm-256color"
-ZSH=/usr/share/oh-my-zsh/
+ZSH=$HOME/.oh-my-zsh
 
 #
 #   ALIAS
@@ -26,6 +26,7 @@ alias gpom="git push origin master"
 alias rewal="wal -i \"$HOME/Pictures/Wallpapers/bttf.jpg\" --saturate 0.75 -s -a 95"
 alias ls='ls -hN --color=auto --group-directories-first'
 alias ccat="highlight --out-format=ansi"
+alias raidstart="mdadm --assemble --scan && mount -a"
 
 
 #
@@ -67,7 +68,7 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 source $ZSH/oh-my-zsh.sh
 ZSH_HIGHLIGHT_HILIGHTERS=(main brackets pattern cursor)
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Fix ls colors for sticky bit directories (mounted drives)
 #LS_COLORS=$LS_COLORS:'ow=0;36;43:' ; export LS_COLORS

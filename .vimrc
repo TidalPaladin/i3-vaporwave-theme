@@ -218,16 +218,6 @@ vnoremap H <gv
 
 map <enter><enter> yi[:e <c-r>"<cr>
 
-"""Powerline setup
-    let g:powerline_pycmd='py3'
-    let g:Powerline_symbols = 'fancy'
-    python3 from powerline.vim import setup as powerline_setup
-    python3 powerline_setup()
-    python3 del powerline_setup
-    set laststatus=2 " Always display the statusline in all windows
-    set showtabline=2 " Always display the tabline, even if there is only one tab
-    set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-
 """Color theme
     set t_Co=256
     syntax on
@@ -237,3 +227,5 @@ map <enter><enter> yi[:e <c-r>"<cr>
     colorscheme onedark
     set background=dark
     highlight Normal ctermbg=NONE
+    set laststatus=2
+    set showtabline=2

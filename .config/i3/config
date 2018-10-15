@@ -1,5 +1,6 @@
 
-set $term --no-startup-id $TERMINAL
+#set $term --no-startup-id $TERMINAL
+set $term --no-startup-id urxvt
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -28,7 +29,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -269,20 +270,20 @@ mode "resize" {
 bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id compton -b
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
+#exec --no-startup-id nm-applet
+#exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
+#exec_always --no-startup-id ff-theme-util
+#exec_always --no-startup-id fix_xcursor
 exec --no-startup-id polybar -r example
 
 # Dropdown for tmux
 bindsym $mod+u [title="scratchpad_dropdown1701"] scratchpad show; [title="scratchpad_dropdown1701"] move position center
 for_window [title="scratchpad_dropdown1701"] floating enable
-for_window [title="scratchpad_dropdown1701"] resize 625 400
+#for_window [title="scratchpad_dropdown1701"] resize 625 400
 for_window [title="scratchpad_dropdown1701"] move scratchpad
 for_window [title="scratchpad_dropdown1701"] border pixel 3
 exec --no-startup-id $term -title scratchpad_dropdown1701 -e zsh -ic tmux
@@ -290,7 +291,7 @@ exec --no-startup-id $term -title scratchpad_dropdown1701 -e zsh -ic tmux
 # Dropdown for tmux
 bindsym $mod+a [title="scratchpad_math1701"] scratchpad show; [title="scratchpad_math1701"] move position center
 for_window [title="scratchpad_math1701"] floating enable
-for_window [title="scratchpad_math1701"] resize 625 400
+#for_window [title="scratchpad_math1701"] resize 625 400
 for_window [title="scratchpad_math1701"] move scratchpad
 for_window [title="scratchpad_math1701"] border pixel 3
 exec --no-startup-id $term -title scratchpad_math1701 -e zsh -ic ipython3
@@ -299,11 +300,11 @@ exec --no-startup-id $term -title scratchpad_math1701 -e zsh -ic ipython3
 bindsym $mod+c [class="Skype"] scratchpad show; [class="Skype"] move position center
 for_window [class="Skype"] floating enable
 for_window [class="Skype"] move scratchpad
-exec --no-startup-id skypeforlinux
+#exec --no-startup-id skypeforlinux
 
 # iPython plots as floating
 for_window [class='matplotlib'] floating enable
-for_window [class='matplotlib'] resize 625 400
+#for_window [class='matplotlib'] resize 625 400
 for_window [class='matplotlib'] border pixel 3
 
 # Color palette used for the terminal ( ~/.Xresources file )
@@ -348,7 +349,7 @@ set_from_resource $bg i3wm.color2 #f0f0f0
 # PROTIP: You can also dynamically set dmenu's colors this way:
 bindsym $mod+d exec dmenu_recency -nb "$term_color0" -nf "$term_color15" -sb "$term_color1" -sf "$term_color15"
 
-exec --no-startup-id sleep 2;/bin/bash /opt/pia/run.sh --startup
+#exec --no-startup-id sleep 2;/bin/bash /opt/pia/run.sh --startup
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle

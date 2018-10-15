@@ -2,7 +2,7 @@
 #
 # Attempt to install various packages
 
-pacaur -S python-pywal polybar compton loadkeys
+pacaur -S python-pywal polybar compton loadkeys unclutter
 
 
 
