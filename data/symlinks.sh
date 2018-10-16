@@ -11,7 +11,3 @@ ln -viLsT $PWD/scripts $HOME/.scripts
 ln -viLsT $PWD/fonts $HOME/.local/share/fonts
 ln -viLsT $PWD/powerlevel9k $HOME/.oh-my-zsh/themes/powerlevel9k
 ln -viLsT $PWD/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
-
-echo "Need password to edit /etc/fstab"
-sudo cp /etc/fstab /etc/fstab.bak && sudo ln -viLsT $PWD/fstab /etc/fstab
-
