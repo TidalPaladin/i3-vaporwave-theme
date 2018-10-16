@@ -6,6 +6,9 @@
 
 let mapleader =" "
 
+execute pathogen#infect()
+execute pathogen#helptags()
+
 " Some basics:
 	set nocompatible
 	filetype plugin on
@@ -219,13 +222,23 @@ vnoremap H <gv
 map <enter><enter> yi[:e <c-r>"<cr>
 
 """Color theme
-    set t_Co=256
-    syntax on
+	set t_Co=256
     set tabstop=4
     set shiftwidth=4
-    let g:onedark_termcolors=256
-    colorscheme onedark
-    set background=dark
-    highlight Normal ctermbg=NONE
     set laststatus=2
     set showtabline=2
+
+	"if (has("termguicolors"))
+	" set termguicolors
+	"endif
+
+	syntax enable
+	let g:onedark_termcolors=256
+	let g:airline_theme='onedark'
+	let g:airline_powerline_fonts=1
+	colorscheme onedark
+
+	"These must come after setting theme
+	set background=dark
+	highlight Normal ctermbg=NONE
+
