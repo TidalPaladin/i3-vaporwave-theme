@@ -1,0 +1,79 @@
+#   file: .zshrc
+#   Requires powerline, powerlevel9k, dmenu, zsh,
+#   neofetch, loadkeys
+
+
+#
+#   PATH
+#
+#
+bindkey -v # VIM in console
+set laststatus=2
+export KEYTIMEOUT=1
+export TERM="xterm-256color"
+ZSH=$HOME/.oh-my-zsh
+
+#
+#   ALIAS
+#
+#
+alias utd-vpn='sudo openconnect vpn.utdallas.edu'
+alias pia="bash $HOME/.pia.sh"
+alias now="date +%Y-%m-%d.%H:%M:%S"
+alias SS="sudo systemctl"
+alias gac="git add . && git commit -m"
+alias gpom="git push origin master"
+alias rewal="wal -i \"$HOME/Pictures/Wallpapers/bttf.jpg\" --saturate 0.75 -s -a 95"
+alias ls='ls -hN --color=auto --group-directories-first'
+alias ccat="highlight --out-format=ansi"
+alias raidstart="mdadm --assemble --scan && mount -a"
+
+# Neovim instead of vim
+alias vim="nvim"
+
+
+#
+#
+# THEME
+#
+#
+(cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors-tty.sh
+source ~/.powerline
+
+
+# Helps to hide username at console prompt?
+export DEFAULT_USER="$USER"
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+plugins=(
+  git
+  vi-mode
+  zsh-syntax-highlighting
+)
+
+
+# ZSH config
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir $ZSH_CACHE_DIR
+fi
+source $ZSH/oh-my-zsh.sh
+ZSH_HIGHLIGHT_HILIGHTERS=(main brackets pattern cursor)
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Fix ls colors for sticky bit directories (mounted drives)
+#LS_COLORS=$LS_COLORS:'ow=0;36;43:' ; export LS_COLORS
+
+neofetch
