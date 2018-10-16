@@ -58,7 +58,7 @@ font-0 = xftSauceCodePro Nerd Font Mono:size=16:antialias=true
 modules-left = i3
 #modules-center = mpd
 #modules-right = volume wlan eth battery temperature date
-modules-right = cpu temperature gpu gputemp filesystem wlan battery date
+modules-right = cpu temperature filesystem wlan battery date
 
 
 tray-position = right

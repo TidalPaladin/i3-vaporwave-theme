@@ -12,10 +12,10 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 DEFAULT_SESSION='i3 --shmlog-size 0'
 
 # Apply mouse settings
-mouse=13
-xinput --set-prop $mouse 'libinput Tapping Enabled' 0
-xinput --set-prop $mouse 'libinput Natural Scrolling Enabled' 0
-xinput --set-prop $mouse 'libinput Accel Speed' 1.0
+#mouse=13
+#xinput --set-prop $mouse 'libinput Tapping Enabled' 0
+#xinput --set-prop $mouse 'libinput Natural Scrolling Enabled' 0
+#xinput --set-prop $mouse 'libinput Accel Speed' 1.0
 
 # Apply keyboard settings
 xmodmap /home/tidal/.Xmodmap

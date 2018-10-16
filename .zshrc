@@ -28,6 +28,9 @@ alias ls='ls -hN --color=auto --group-directories-first'
 alias ccat="highlight --out-format=ansi"
 alias raidstart="mdadm --assemble --scan && mount -a"
 
+# Neovim instead of vim
+alias vim="nvim"
+
 
 #
 #
