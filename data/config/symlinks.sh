@@ -3,7 +3,7 @@
 # to various the appropriate system locations
 
 # Symlinks to .config subdirs, except for Code
-ls -A1 | grep -v 'symlinks.sh|settings.json' | parallel --tty ln -vfLsT $PWD/{} $HOME/.config/{}
+ls -A1 | grep -Ev 'symlinks.sh|settings.json' | parallel --tty ln -viLsT $PWD/{} $HOME/.config/{}
 
 # VSCode config separately
 mkdir -p $HOME/.config/Code/User
