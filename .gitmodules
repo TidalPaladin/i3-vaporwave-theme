@@ -1,0 +1,4 @@
+[submodule "global"]
+	path = global
+	url = git@github.com:TidalPaladin/i3-vaporwave-theme.git
+	branch = void-global
