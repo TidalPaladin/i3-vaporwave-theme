@@ -2,6 +2,10 @@
 #   Requires powerline, powerlevel9k, dmenu, zsh,
 #   neofetch, loadkeys
 
+# Start tmux on ssh
+if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+fi
 
 #
 #   PATH
