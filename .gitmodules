@@ -1,3 +1,9 @@
 [submodule "data/powerlevel9k"]
 	path = data/powerlevel9k
 	url = https://github.com/bhilburn/powerlevel9k.git
+[submodule "data/home/.vim/bundle/vim-airline"]
+	path = data/home/.vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "data/home/.vim/bundle/onedark.vim"]
+	path = data/home/.vim/bundle/onedark.vim
+	url = https://github.com/joshdick/onedark.vim.git
