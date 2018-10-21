@@ -27,10 +27,11 @@ alias now="date +%Y-%m-%d.%H:%M:%S"
 alias SS="sudo systemctl"
 alias gac="git add . && git commit -m"
 alias gpom="git push origin master"
-alias rewal="wal -i \"$HOME/Pictures/Wallpapers/bttf.jpg\" --saturate 0.75 -s -a 95"
+alias rewal="wal -g -i \"$HOME/Pictures/Wallpapers/bttf.jpg\" --saturate 0.75 -s -a 95"
 alias ls='ls -hN --color=auto --group-directories-first'
 alias ccat="highlight --out-format=ansi"
 alias raidstart="mdadm --assemble --scan && mount -a"
+alias mars-mips="java -jar $HOME/.scripts/Mars4_5.jar"
 
 # Neovim instead of vim
 alias vim="nvim"
@@ -81,3 +82,4 @@ ZSH_HIGHLIGHT_HILIGHTERS=(main brackets pattern cursor)
 #LS_COLORS=$LS_COLORS:'ow=0;36;43:' ; export LS_COLORS
 
 neofetch
+source ~/.shortcuts

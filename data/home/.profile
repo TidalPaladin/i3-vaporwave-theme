@@ -31,5 +31,3 @@ source ~/.cache/wal/colors-tty.sh
 xmodmap "$HOME/.scripts/.xmodmap-caps"
 unclutter -idle 2 -root &>/dev/null &
 
-# Force wifi up
-nmcli con up Nightfall &>/dev/null &

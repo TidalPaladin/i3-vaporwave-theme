@@ -4,9 +4,6 @@ set $term --no-startup-id /usr/bin/urxvt
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
-# set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
-
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
 new_float normal
@@ -29,6 +26,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec samedir
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -41,7 +39,7 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ################################################################################################
 
 #exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+bindsym $mod+Ctrl+m exec $term -e 'alsamixer'
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
@@ -53,29 +51,24 @@ exec --no-startup-id pa-applet
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
-bindsym $mod+F3 exec pcmanfm
 bindsym $mod+Ctrl+Return exec nemo
-bindsym $mod+Shift+Return exec terminal -e 'ranger'
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
+#bindsym $mod+Shift+Return exec $term -e 'ranger'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod+d exec rofi -show run
 
 # focus_follows_mouse no
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -84,10 +77,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -101,8 +94,8 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+v split h;exec notify-send 'tile horizontally'
+bindsym $mod+c split v;exec notify-send 'tile vertically'
 bindsym $mod+q split toggle
 
 # toggle fullscreen mode for the focused container
@@ -229,11 +222,11 @@ bindsym $mod+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id sudo zzz, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym r exec --no-startup-id i3exit sudo reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
@@ -252,7 +245,7 @@ mode "resize" {
         bindsym j resize shrink width 5 px or 5 ppt
         bindsym k resize grow height 5 px or 5 ppt
         bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym h resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -268,56 +261,48 @@ mode "resize" {
 # Lock screen
 bindsym $mod+9 exec --no-startup-id blurlock
 
+set $dropdown_w 1920
+set $dropdown_h 1080
+
+# Dropdown for tmux
+set $dropdown_tmux "scratchpad_dropdown_tmux"
+for_window [title=$dropdown_tmux] floating enable
+for_window [title=$dropdown_tmux] resize $dropdown_w $dropdown_h
+for_window [title=$dropdown_tmux] move scratchpad
+for_window [title=$dropdown_tmux] border pixel 3
+bindsym $mod+u [title=$dropdown_tmux] scratchpad show; [title=$dropdown_tmux] move position center
+
+# Dropdown for tmux
+set $dropdown_ipython "scratchpad_dropdown_ipython"
+for_window [title=$dropdown_ipython] floating enable
+for_window [title=$dropdown_ipython] resize $dropdown_w $dropdown_h
+for_window [title=$dropdown_ipython] move scratchpad
+for_window [title=$dropdown_ipython] border pixel 3
+bindsym $mod+a [title=$dropdown_ipython] scratchpad show; [title=$dropdown_ipython] move position center
+
+# Dropdown for skype
+bindsym $mod+m [class="Skype"] scratchpad show; [class="Skype"] move position center
+for_window [class="Skype"] floating enable
+for_window [class="Skype"] move scratchpad
+
+# iPython plots as floating
+for_window [class='matplotlib'] floating enable
+for_window [class='matplotlib'] resize $dropdown_w $dropdown_h
+for_window [class='matplotlib'] border pixel 3
+
 # Autostart applications
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-#exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-#exec_always --no-startup-id ff-theme-util
-#exec_always --no-startup-id fix_xcursor
 exec --no-startup-id polybar -r example
-
-# Dropdown for tmux
-bindsym $mod+u [title="scratchpad_dropdown1701"] scratchpad show; [title="scratchpad_dropdown1701"] move position center
-for_window [title="scratchpad_dropdown1701"] floating enable
-#for_window [title="scratchpad_dropdown1701"] resize 625 400
-for_window [title="scratchpad_dropdown1701"] move scratchpad
-for_window [title="scratchpad_dropdown1701"] border pixel 3
-exec_always --no-startup-id $term -title scratchpad_dropdown1701 -e /usr/bin/zsh -ic tmux
-
-# Dropdown for tmux
-bindsym $mod+a [title="scratchpad_math1701"] scratchpad show; [title="scratchpad_math1701"] move position center
-for_window [title="scratchpad_math1701"] floating enable
-#for_window [title="scratchpad_math1701"] resize 625 400
-for_window [title="scratchpad_math1701"] move scratchpad
-for_window [title="scratchpad_math1701"] border pixel 3
-exec --no-startup-id $term -title scratchpad_math1701 -e zsh -ic ipython3
-
-# Dropdown for skype
-bindsym $mod+c [class="Skype"] scratchpad show; [class="Skype"] move position center
-for_window [class="Skype"] floating enable
-for_window [class="Skype"] move scratchpad
+#exec --no-startup-id sleep 2;/bin/bash /opt/pia/run.sh --startup
+exec_always --no-startup-id numlockx on
+exec $term -title $dropdown_tmux -e /usr/bin/zsh -ic tmux
+exec $term -title $dropdown_ipython -e zsh -ic ipython3
 #exec --no-startup-id skypeforlinux
 
-# iPython plots as floating
-for_window [class='matplotlib'] floating enable
-#for_window [class='matplotlib'] resize 625 400
-for_window [class='matplotlib'] border pixel 3
 
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
 set_from_resource $term_background background
 set_from_resource $term_foreground foreground
 set_from_resource $term_color0     color0
@@ -336,23 +321,8 @@ set_from_resource $term_color12    color12
 set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
-
-# Set colors from Xresources
-# Change 'color7' and 'color2' to whatever colors you want i3 to use
-# from the generated scheme.
-# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
-# it fails to get colors from Xresources.
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
-
-# PROTIP: You can also dynamically set dmenu's colors this way:
-bindsym $mod+d exec rofi -show run
-
-#exec --no-startup-id sleep 2;/bin/bash /opt/pia/run.sh --startup
-
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
-
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $bg
@@ -364,8 +334,6 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 
-
-
 #############################
 ### settings for i3-gaps: ###
 #############################
@@ -373,11 +341,6 @@ client.background       $bg
 # Set inner/outer gaps
 gaps inner 20
 gaps outer 10
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 # smart_gaps on
@@ -423,4 +386,86 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-exec_always --no-startup-id numlockx on
+# #---Extra XF86 Keys---# #
+# These are the extra media keys that some keyboards have.
+bindsym XF86AudioMute		exec --no-startup-id lmc mute
+bindsym XF86AudioLowerVolume	exec --no-startup-id lmc down 5
+bindsym Shift+XF86AudioLowerVolume	exec --no-startup-id lmc down 10
+bindsym Control+XF86AudioLowerVolume	exec --no-startup-id lmc down 1
+bindsym XF86AudioRaiseVolume	exec --no-startup-id lmc up 5
+bindsym Shift+XF86AudioRaiseVolume	exec --no-startup-id lmc up 10
+bindsym Control+XF86AudioRaiseVolume	exec --no-startup-id lmc up 1
+bindsym XF86PowerOff		exec --no-startup-id prompt "Are you sure you want to shutdown?" "$shutdown"
+##bindsym XF86Copy		exec
+##bindsym XF86Open		exec
+##bindsym XF86Paste		exec
+##bindsym XF86Cut		exec
+##bindsym XF86MenuKB		exec
+bindsym XF86Calculator		exec $term -e R -q
+##bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
+##bindsym XF86WakeUp		exec
+bindsym XF86Explorer		exec $term -e ranger
+##bindsym XF86Send		exec
+##bindsym XF86Xfer		exec
+bindsym XF86WWW			exec --no-startup-id $BROWSER
+##bindsym XF86DOS		exec
+bindsym XF86ScreenSaver		exec exec --no-startup-id lockscreen
+##bindsym XF86RotateWindows	exec
+##bindsym XF86TaskPane		exec
+##bindsym XF86Favorites		exec
+bindsym XF86MyComputer		exec $term -e ranger
+##bindsym XF86Back		exec
+##bindsym XF86Forward		exec
+bindsym XF86Eject		exec --no-startup-id dmenuumount
+bindsym XF86AudioNext		exec --no-startup-id lmc next
+bindsym XF86AudioPlay		exec --no-startup-id lmc toggle
+bindsym XF86AudioPrev		exec --no-startup-id lmc prev
+bindsym XF86AudioStop		exec --no-startup-id lmc toggle
+##bindsym XF86AudioRecord
+bindsym XF86AudioRewind		exec --no-startup-id lmc back 10
+bindsym XF86AudioForward	exec --no-startup-id lmc forward 10
+##bindsym XF86Phone		exec
+##bindsym XF86Tools		exec
+bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
+bindsym XF86Reload		restart
+##bindsym XF86ScrollUp		exec
+##bindsym XF86ScrollDown		exec
+##bindsym XF86New		exec
+##bindsym XF86LaunchA		exec
+##bindsym XF86LaunchB		exec
+##bindsym XF86Launch2		exec
+##bindsym XF86Launch3		exec
+##bindsym XF86Launch4		exec
+##bindsym XF86Launch5		exec
+##bindsym XF86Launch6		exec
+##bindsym XF86Launch7		exec
+##bindsym XF86Launch8		exec
+##bindsym XF86Launch9		exec
+#bindsym XF86AudioMicMute	exec $micmute
+bindsym XF86TouchpadToggle	exec --no-startup-id toggletouchpad
+bindsym XF86TouchpadOn		exec --no-startup-id synclient TouchpadOff=0
+bindsym XF86TouchpadOff		exec --no-startup-id synclient TouchpadOff=1
+bindsym XF86Suspend		exec --no-startup-id lockscreen
+bindsym XF86Close		kill
+bindsym XF86WebCam		exec --no-startup-id camtoggle
+bindsym XF86Mail		exec $term -e neomutt
+bindsym XF86Messenger		exec $term -e weechat
+bindsym XF86Search		exec $BROWSER https://duckduckgo.com
+##bindsym XF86Go			exec
+##bindsym XF86Finance		exec
+##bindsym XF86Game		exec
+bindsym XF86Shop		exec $BROWSER https://ebay.com
+bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
+bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
+bindsym XF86AudioMedia		exec --no-startup-id $term -e ncmpcpp
+bindsym XF86Display		exec --no-startup-id arandr
+#bindsym XF86KbdLightOnOff	exec
+bindsym XF86KbdBrightnessDown	exec --no-startup-id python3.6 ~/.scripts/kb-lights.py -
+bindsym XF86KbdBrightnessUp	exec --no-startup-id python3.6 ~/.scripts/kb-lights.py +
+##bindsym XF86Reply		exec
+##bindsym XF86MailForward	exec
+##bindsym XF86Save		exec
+bindsym XF86Documents		exec $term -e ranger ~/Documents
+##bindsym XF86Battery		exec
+##bindsym XF86Bluetooth		exec
+bindsym XF86WLAN		exec $netrefresh
