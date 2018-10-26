@@ -262,13 +262,13 @@ mode "resize" {
 # Lock screen
 bindsym $mod+9 exec --no-startup-id blurlock
 
-set $dropdown_w 1920
-set $dropdown_h 1080
+set $dropdown_w 1024
+set $dropdown_h 768
 
 # Dropdown for tmux
 set $dropdown_tmux "scratchpad_dropdown_tmux"
 for_window [title=$dropdown_tmux] floating enable
-for_window [title=$dropdown_tmux] resize $dropdown_w $dropdown_h
+for_window [title=$dropdown_tmux] resize set $dropdown_w $dropdown_h
 for_window [title=$dropdown_tmux] move scratchpad
 for_window [title=$dropdown_tmux] border pixel 3
 bindsym $mod+u [title=$dropdown_tmux] scratchpad show; [title=$dropdown_tmux] move position center
@@ -276,7 +276,7 @@ bindsym $mod+u [title=$dropdown_tmux] scratchpad show; [title=$dropdown_tmux] mo
 # Dropdown for tmux
 set $dropdown_ipython "scratchpad_dropdown_ipython"
 for_window [title=$dropdown_ipython] floating enable
-for_window [title=$dropdown_ipython] resize $dropdown_w $dropdown_h
+for_window [title=$dropdown_ipython] resize set $dropdown_w $dropdown_h
 for_window [title=$dropdown_ipython] move scratchpad
 for_window [title=$dropdown_ipython] border pixel 3
 bindsym $mod+a [title=$dropdown_ipython] scratchpad show; [title=$dropdown_ipython] move position center
@@ -299,8 +299,8 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id polybar -r example
 #exec --no-startup-id sleep 2;/bin/bash /opt/pia/run.sh --startup
 exec_always --no-startup-id numlockx on
-exec $term -title $dropdown_tmux -e /usr/bin/zsh -ic tmux
-exec $term -title $dropdown_ipython -e zsh -ic ipython3
+exec $term -e tmux new-session -As $dropdown_tmux
+exec $term -title $dropdown_ipython -e /usr/bin/zsh -c ipython3
 #exec --no-startup-id skypeforlinux
 
 
