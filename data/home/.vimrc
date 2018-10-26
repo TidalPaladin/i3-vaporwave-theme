@@ -16,6 +16,7 @@ execute pathogen#helptags()
 	set encoding=utf-8
 	set number
 	set relativenumber
+	set autoread			" Reload external changes
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow
