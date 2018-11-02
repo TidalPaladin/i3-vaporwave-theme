@@ -214,6 +214,13 @@ execute pathogen#helptags()
 	autocmd FileType xml inoremap ,e <item><Enter><title></title><Enter><guid<space>isPermaLink="false"></guid><Enter><pubDate><Esc>:put<Space>=strftime('%a, %d %b %Y %H:%M:%S %z')<Enter>kJA</pubDate><Enter><link></link><Enter><description><![CDATA[]]></description><Enter></item><Esc>?<title><enter>cit
 	autocmd FileType xml inoremap ,a <a href=""></a><Esc>F"ci"
 
+"""Python
+	autocmd FileType python inoremap <F5> <Esc>:!pytest3<space><c-r>%<Enter>
+	autocmd FileType python nnoremap <F5> :!pytest3<space><c-r>%<Enter>
+	"""Compile in debug mode with Shift-F5
+	autocmd FileType python inoremap <F15> <Esc>:!pytest3<space><c-r>% --pdb<Enter>
+	autocmd FileType python nnoremap <F15> :!pytest3<space><c-r>% --pdb<Enter>
+
 
 vnoremap K xkP`[V`]
 vnoremap J xp`[V`]
