@@ -1,1 +1,3 @@
 */__pycache__
+data/config/qutebrowser/*/cache
+data/config/qutebrowser/*/data
