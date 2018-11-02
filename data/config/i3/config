@@ -91,7 +91,6 @@ bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
@@ -273,13 +272,21 @@ for_window [title=$dropdown_tmux] move scratchpad
 for_window [title=$dropdown_tmux] border pixel 3
 bindsym $mod+u [title=$dropdown_tmux] scratchpad show; [title=$dropdown_tmux] move position center
 
-# Dropdown for tmux
+# Dropdown for ipython
 set $dropdown_ipython "scratchpad_dropdown_ipython"
 for_window [title=$dropdown_ipython] floating enable
 for_window [title=$dropdown_ipython] resize set $dropdown_w $dropdown_h
 for_window [title=$dropdown_ipython] move scratchpad
 for_window [title=$dropdown_ipython] border pixel 3
 bindsym $mod+a [title=$dropdown_ipython] scratchpad show; [title=$dropdown_ipython] move position center
+
+# Dropdown for ipython
+set $dropdown_browser "scratchpad_dropdown_browser"
+for_window [instance=$dropdown_browser] floating enable
+for_window [instance=$dropdown_browser] resize set 1920 1080
+for_window [instance=$dropdown_browser] move scratchpad
+for_window [instance=$dropdown_browser] border pixel 3
+bindsym $mod+b [instance=$dropdown_browser] scratchpad show; [instance=$dropdown_browser] move position center
 
 # Dropdown for skype
 bindsym $mod+m [class="Skype"] scratchpad show; [class="Skype"] move position center
@@ -302,6 +309,7 @@ exec_always --no-startup-id numlockx on
 exec $term -e tmux new-session -As $dropdown_tmux
 exec $term -title $dropdown_ipython -e /usr/bin/zsh -c ipython3
 #exec --no-startup-id skypeforlinux
+exec_always --no-startup-id qutebrowser --target window --basedir /home/tidal/.config/qutebrowser/dropdown --qt-arg name $dropdown_browser
 
 
 set_from_resource $term_background background
@@ -355,7 +363,6 @@ set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
-
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
