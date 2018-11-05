@@ -1,5 +1,5 @@
 
-set $term --no-startup-id /usr/bin/urxvt
+set $term --no-startup-id /usr/bin/alacritty
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -294,9 +294,11 @@ for_window [class="Skype"] floating enable
 for_window [class="Skype"] move scratchpad
 
 # iPython plots as floating
-for_window [class='matplotlib'] floating enable
-for_window [class='matplotlib'] resize $dropdown_w $dropdown_h
-for_window [class='matplotlib'] border pixel 3
+set $mpl_select "Matplotlib"
+for_window [class=$mpl_select] floating enable
+#for_window [class=$mpl_select] resize set 1920 1080
+for_window [class=$mpl_select] border pixel 3
+for_window [class=$mpl_select] move position center
 
 # Autostart applications
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -309,7 +311,7 @@ exec_always --no-startup-id numlockx on
 exec $term -e tmux new-session -As $dropdown_tmux
 exec $term -title $dropdown_ipython -e /usr/bin/zsh -c ipython3
 #exec --no-startup-id skypeforlinux
-exec_always --no-startup-id qutebrowser --target window --basedir /home/tidal/.config/qutebrowser/dropdown --qt-arg name $dropdown_browser
+exec --no-startup-id qutebrowser --target window --basedir /home/tidal/.config/qutebrowser/dropdown --qt-arg name $dropdown_browser
 
 
 set_from_resource $term_background background

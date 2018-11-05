@@ -15,6 +15,7 @@ bindkey -v # VIM in console
 set laststatus=2
 export KEYTIMEOUT=1
 export TERM="xterm-256color"
+export TERMINAL="/usr/bin/alacritty"
 ZSH=$HOME/.oh-my-zsh
 
 #
@@ -27,7 +28,7 @@ alias now="date +%Y-%m-%d.%H:%M:%S"
 alias SS="sudo systemctl"
 alias gac="git add . && git commit -m"
 alias gpom="git push origin master"
-alias rewal="wal -g -i \"$HOME/Pictures/Wallpapers/bttf.jpg\" --saturate 0.75 -s -a 95"
+alias rewal="wal -g -i \"$HOME/Pictures/Wallpapers/bttf.jpg\" --saturate 0.75"
 alias ls='ls -hN --color=auto --group-directories-first'
 alias ccat="highlight --out-format=ansi"
 alias raidstart="mdadm --assemble --scan && mount -a"
