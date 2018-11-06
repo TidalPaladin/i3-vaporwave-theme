@@ -16,6 +16,8 @@ set laststatus=2
 export KEYTIMEOUT=1
 export TERM="xterm-256color"
 export TERMINAL="/usr/bin/alacritty"
+export PAGER="less"
+export EDITOR='/usr/bin/nvim'
 ZSH=$HOME/.oh-my-zsh
 
 #

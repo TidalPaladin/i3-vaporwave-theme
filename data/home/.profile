@@ -4,8 +4,9 @@
 # Runs on login
 export PATH="$PATH:$HOME/.scripts:$HOME/.platformio/penv/bin:$HOME/.local/bin"
 export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
-export EDITOR="/usr/bin/vim"
+export EDITOR="/usr/bin/nvim"
 export BROWSER="firefox"
+export PAGER="less"
 export TERMINAL="/usr/bin/alacritty"
 export TERM="xterm-256color"
 export SHELL="/usr/bin/zsh"

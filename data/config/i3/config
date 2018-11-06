@@ -308,11 +308,12 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id polybar -r example
 #exec --no-startup-id sleep 2;/bin/bash /opt/pia/run.sh --startup
 exec_always --no-startup-id numlockx on
-exec $term -e tmux new-session -As $dropdown_tmux
-exec $term -title $dropdown_ipython -e /usr/bin/zsh -c ipython3
 #exec --no-startup-id skypeforlinux
 exec --no-startup-id qutebrowser --target window --basedir /home/tidal/.config/qutebrowser/dropdown --qt-arg name $dropdown_browser
 
+# Implemented as runit services that respawn if closed
+# exec $term -e tmux new-session -As $dropdown_tmux
+# exec $term -title $dropdown_ipython -e ipython3
 
 set_from_resource $term_background background
 set_from_resource $term_foreground foreground
