@@ -631,7 +631,8 @@ c.content.private_browsing = False
 ## Valid values:
 ##   - system: Use the system wide proxy.
 ##   - none: Don't use any proxy
-c.content.proxy = 'socks://localhost:9050'
+##c.content.proxy = 'socks://localhost:9050'
+c.content.proxy = 'none'
 
 ## Send DNS requests over the configured proxy.
 ## Type: Bool

@@ -39,6 +39,10 @@ alias mars-mips="java -jar $HOME/.scripts/Mars4_5.jar"
 # Neovim instead of vim
 alias vim="nvim"
 
+# Alias function to attach tmux to remote session
+function tssh() {
+	ssh $1 -t tmux attach-session
+}
 
 #
 #
