@@ -18,6 +18,8 @@ export TERM="xterm-256color"
 export TERMINAL="/usr/bin/alacritty"
 export PAGER="less"
 export EDITOR='/usr/bin/nvim'
+export PATH="$PATH:/usr/local/cuda-10.0/bin/"
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ZSH=$HOME/.oh-my-zsh
 
 #
@@ -30,7 +32,7 @@ alias now="date +%Y-%m-%d.%H:%M:%S"
 alias SS="sudo systemctl"
 alias gac="git add . && git commit -m"
 alias gpom="git push origin master"
-alias rewal="wal -g -i \"$HOME/Pictures/Wallpapers/bttf.jpg\" --saturate 0.75"
+alias rewal="wal -g -i \"$HOME/Pictures/Wallpapers/vaporwave.jpg\" --saturate 0.75"
 alias ls='ls -hN --color=auto --group-directories-first'
 alias ccat="highlight --out-format=ansi"
 alias raidstart="mdadm --assemble --scan && mount -a"
@@ -42,6 +44,30 @@ alias vim="nvim"
 # Alias function to attach tmux to remote session
 function tssh() {
 	ssh $1 -t tmux attach-session
+}
+
+function encode-265() {
+	input="$1"
+	output="$2"
+	qual=15
+	preset="slow"
+	br="400K"
+
+	ffmpeg -hwaccel cuvid -i "$input" \
+	-c:v hevc_nvenc -surfaces 32 -spatial_aq 1 -cq "$qual" -preset "$preset" -profile:v 3 -rc vbr \
+	-c:a aac -b:a 64k \
+	"$output"
+}
+
+function 264-to-265() {
+	input="$1"
+	output="$2"
+	w=1280
+	h=720
+	br="8M"
+	ffmpeg -hwaccel cuvid -i "$input" \
+	-c:v hevc_nvenc -preset slow -cq 18 -rc vbr_hq -rc-lookahead 10 -spatial_aq 1 -temporal_aq 1 -b:v "$br" \
+	"$output"
 }
 
 #

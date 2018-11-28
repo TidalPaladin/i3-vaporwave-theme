@@ -1,5 +1,9 @@
 
-set $term --no-startup-id /usr/bin/alacritty
+# Get Xresources vars
+set_from_resource $fg fg #000
+set_from_resource $bg bg #fff
+set_from_resource $accent accent #fff
+set_from_resource $border border $ccc
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -15,7 +19,7 @@ bindsym $mod+Ctrl+s i3-exec suspend, mode "default"
 bindsym --release $mod+x exec --no-startup-id import ~/Pictures/screenshots/$(date +%Y-%m-%d.%H:%M:%S).png
 
 # Hide borders
-hide_edge_borders yes
+#hide_edge_borders yes
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -305,7 +309,9 @@ for_window [class=$mpl_select] move position center
 exec --no-startup-id compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id polybar -r example
+exec --no-startup-id polybar -r left
+exec --no-startup-id polybar -r center
+exec --no-startup-id polybar -r right
 #exec --no-startup-id sleep 2;/bin/bash /opt/pia/run.sh --startup
 exec_always --no-startup-id numlockx on
 #exec --no-startup-id skypeforlinux
@@ -350,9 +356,10 @@ client.background       $bg
 ### settings for i3-gaps: ###
 #############################
 
-# Set inner/outer gaps
-gaps inner 20
-gaps outer 10
+## Gaps
+gaps inner 25
+gaps outer 0
+#gaps top 30
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 # smart_gaps on
